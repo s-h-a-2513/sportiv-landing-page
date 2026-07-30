@@ -56,7 +56,7 @@ export function WaitlistDialog({
           <DialogTitle className="font-display text-xl font-bold tracking-tight text-ink">
             Coming Soon on Android
           </DialogTitle>
-          <DialogDescription className="text-ink-muted">
+          <DialogDescription className="body-copy text-[0.95rem]">
             Join the waitlist and we’ll email you when Sportiv is ready on Google
             Play.
           </DialogDescription>

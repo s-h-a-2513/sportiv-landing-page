@@ -11,7 +11,7 @@ export default {
         },
         ink: {
           DEFAULT: '#1A1410',
-          muted: '#6F645C',
+          muted: '#3D342E',
         },
         wash: {
           DEFAULT: '#FFFAF6',

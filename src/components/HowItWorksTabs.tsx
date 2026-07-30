@@ -50,7 +50,7 @@ export function HowItWorksTabs() {
   }
 
   return (
-    <div className="anime-reveal">
+    <div>
       <div
         id="players"
         className="pointer-events-none absolute -top-24"
@@ -62,14 +62,13 @@ export function HowItWorksTabs() {
         aria-hidden
       />
 
-      <div className="neu-inset mx-auto mb-10 flex w-fit flex-wrap justify-center gap-1 rounded-pill p-1.5">
+      <div className="neu-inset mx-auto mb-6 flex w-full max-w-md flex-wrap justify-center gap-1 rounded-pill p-1.5 sm:w-fit">
         {TABS.map((tab, index) => (
           <button
             key={tab.id}
             type="button"
             className={cn(
-              'neu-tab rounded-pill px-5 py-2.5 text-sm font-medium',
-              activeIndex === index && 'neu-tab',
+              'neu-tab min-w-[9.5rem] flex-1 rounded-pill px-5 py-2.5 text-sm font-semibold sm:flex-none',
             )}
             data-active={activeIndex === index ? 'true' : 'false'}
             onClick={() => select(index)}
@@ -79,29 +78,28 @@ export function HowItWorksTabs() {
         ))}
       </div>
 
-      <TransitionPanel
-        activeIndex={activeIndex}
-        className="min-h-[160px]"
-        transition={{ duration: 0.35, ease: 'easeInOut' }}
-        variants={{
-          enter: { opacity: 0, y: 16, filter: 'blur(2px)' },
-          center: { opacity: 1, y: 0, filter: 'blur(0px)' },
-          exit: { opacity: 0, y: -12, filter: 'blur(2px)' },
-        }}
-      >
-        {TABS.map((tab) => (
-          <ul key={tab.id} className="m-0 list-none space-y-3 p-0">
-            {tab.lines.map((line) => (
-              <li
-                key={line}
-                className="text-lg leading-snug text-ink-muted md:text-xl"
-              >
-                {line}
-              </li>
-            ))}
-          </ul>
-        ))}
-      </TransitionPanel>
+      <div className="neu-inset rounded-[20px] px-5 py-5 md:px-6 md:py-6">
+        <TransitionPanel
+          activeIndex={activeIndex}
+          className="min-h-[132px]"
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
+          variants={{
+            enter: { opacity: 0, y: 12, filter: 'blur(2px)' },
+            center: { opacity: 1, y: 0, filter: 'blur(0px)' },
+            exit: { opacity: 0, y: -10, filter: 'blur(2px)' },
+          }}
+        >
+          {TABS.map((tab) => (
+            <ul key={tab.id} className="m-0 list-none space-y-2.5 p-0">
+              {tab.lines.map((line) => (
+                <li key={line} className="body-copy">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </TransitionPanel>
+      </div>
     </div>
   )
 }

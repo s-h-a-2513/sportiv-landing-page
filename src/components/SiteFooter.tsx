@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { BrandMark } from '@/components/BrandMark'
 import { NAV_ITEMS } from '@/lib/nav'
 import { Link000, Link003 } from '@/components/ui/skiper-ui/skiper40'
 
@@ -11,24 +12,12 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-black/[0.04] py-14">
+    <footer className="pb-8 pt-4 md:pb-10 md:pt-6">
       <div className="mx-auto max-w-content px-6 md:px-10">
-        <div className="neu-raised grid gap-10 rounded-[24px] p-8 md:grid-cols-3 md:p-10">
+        <div className="neu-raised grid gap-8 rounded-[28px] p-6 md:grid-cols-3 md:gap-6 md:p-8">
           <div>
-            <Link
-              to="/"
-              className="mb-3 inline-flex items-center gap-2 font-display text-lg font-bold text-ink no-underline hover:no-underline"
-            >
-              <img
-                src="/assets/sportiv_logo.png"
-                alt=""
-                width={28}
-                height={28}
-                className="h-7 w-7 object-contain"
-              />
-              Sportiv
-            </Link>
-            <p className="m-0 text-ink-muted">
+            <BrandMark size="sm" className="mb-3" />
+            <p className="body-copy m-0 text-[0.95rem]">
               Pakistan sports matching for real 2-player games.
             </p>
             <p className="mt-2">
@@ -39,10 +28,10 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h4 className="mb-3 font-display text-sm font-semibold tracking-wide text-ink">
+            <h4 className="mb-2.5 font-display text-sm font-bold tracking-wide text-ink">
               Explore
             </h4>
-            <ul className="m-0 list-none space-y-3 p-0">
+            <ul className="m-0 list-none space-y-2 p-0">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
                   <Link000 href={sectionHref(item.id, location.pathname)}>
@@ -54,15 +43,15 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h4 className="mb-3 font-display text-sm font-semibold tracking-wide text-ink">
+            <h4 className="mb-2.5 font-display text-sm font-bold tracking-wide text-ink">
               Legal
             </h4>
-            <ul className="m-0 list-none space-y-3 p-0">
+            <ul className="m-0 list-none space-y-2 p-0">
               <li>
                 <Link003 href="/privacy">Privacy Policy</Link003>
               </li>
             </ul>
-            <p className="mt-6 text-xs text-ink-muted/80">
+            <p className="mt-5 text-xs font-medium text-ink-muted">
               Link animations by{' '}
               <a
                 href="https://skiper-ui.com"
@@ -76,7 +65,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap justify-between gap-3 text-sm text-ink-muted">
+        <div className="mt-5 flex flex-wrap justify-between gap-2 text-sm font-medium text-ink-muted">
           <span>&copy; {year} Sportiv. All rights reserved.</span>
           <span>Coming Soon on Android</span>
         </div>

@@ -5,22 +5,26 @@
 :root {
   --neu-bg: #fffaf6;
   --neu-bg-soft: #fff4eb;
-  --neu-light: rgba(255, 255, 255, 0.95);
-  --neu-dark: rgba(26, 20, 16, 0.12);
-  --neu-dark-soft: rgba(26, 20, 16, 0.08);
-  --neu-orange-glow: rgba(255, 107, 0, 0.22);
+  --neu-light: #ffffff;
+  --neu-dark: rgba(26, 20, 16, 0.18);
+  --neu-dark-soft: rgba(26, 20, 16, 0.1);
+  --neu-orange-glow: rgba(255, 107, 0, 0.28);
+  /* Classic soft UI: same base as page, dual light/dark shadows */
   --neu-shadow-out:
-    8px 8px 20px var(--neu-dark-soft),
-    -6px -6px 16px var(--neu-light);
+    9px 9px 22px var(--neu-dark-soft),
+    -9px -9px 22px var(--neu-light);
+  --neu-shadow-out-sm:
+    5px 5px 12px var(--neu-dark-soft),
+    -5px -5px 12px var(--neu-light);
   --neu-shadow-in:
-    inset 5px 5px 12px var(--neu-dark-soft),
-    inset -4px -4px 10px var(--neu-light);
+    inset 6px 6px 14px var(--neu-dark-soft),
+    inset -6px -6px 14px var(--neu-light);
   --neu-shadow-pressed:
-    inset 6px 6px 14px var(--neu-dark),
-    inset -3px -3px 8px var(--neu-light);
+    inset 7px 7px 16px var(--neu-dark),
+    inset -4px -4px 10px var(--neu-light);
   --neu-shadow-btn:
     6px 6px 16px var(--neu-orange-glow),
-    -4px -4px 12px var(--neu-light);
+    -5px -5px 14px var(--neu-light);
 }
 
 @layer base {
@@ -29,8 +33,9 @@
   }
 
   body {
-    @apply m-0 font-body text-base font-normal leading-relaxed text-ink antialiased overflow-x-hidden;
+    @apply m-0 font-body text-base font-medium leading-relaxed text-ink antialiased overflow-x-hidden;
     background: var(--neu-bg);
+    color: #1a1410;
   }
 
   a {
@@ -50,19 +55,21 @@
   .neu-flat {
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-out);
-    border: 1px solid rgba(255, 255, 255, 0.55);
   }
 
   .neu-raised {
-    background: linear-gradient(145deg, #ffffff, var(--neu-bg-soft));
+    background: var(--neu-bg);
     box-shadow: var(--neu-shadow-out);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .neu-raised-sm {
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-out-sm);
   }
 
   .neu-inset {
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-in);
-    border: 1px solid rgba(26, 20, 16, 0.04);
   }
 
   .neu-btn {
@@ -85,43 +92,60 @@
   }
 
   .neu-chip {
-    background: linear-gradient(145deg, #ffffff, var(--neu-bg-soft));
-    box-shadow: var(--neu-shadow-out);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-out-sm);
   }
 
   .neu-input {
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-in);
-    border: 1px solid rgba(26, 20, 16, 0.04);
+    border: none;
+    color: #1a1410;
+  }
+
+  .neu-input::placeholder {
+    color: #6b5e55;
+    opacity: 0.85;
   }
 
   .neu-input:focus {
     outline: none;
     box-shadow:
       var(--neu-shadow-in),
-      0 0 0 2px rgba(255, 107, 0, 0.25);
+      0 0 0 2px rgba(255, 107, 0, 0.28);
   }
 
   .neu-header {
-    background: rgba(255, 250, 246, 0.88);
-    box-shadow: var(--neu-shadow-out);
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-out-sm);
   }
 
   .neu-tab {
     background: transparent;
-    color: var(--ink-muted, #6f645c);
+    color: #3d342e;
     transition: color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
 
   .neu-tab[data-active='true'] {
-    background: linear-gradient(145deg, #ffffff, var(--neu-bg-soft));
+    background: var(--neu-bg);
     color: #ff6b00;
-    box-shadow: var(--neu-shadow-out);
+    box-shadow: var(--neu-shadow-out-sm);
     font-weight: 600;
+  }
+
+  .neu-phone {
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-out);
+    padding: 12px;
+  }
+
+  .section-title {
+    @apply font-display font-bold tracking-tight text-ink;
+    font-size: clamp(1.65rem, 3.2vw, 2.15rem);
+  }
+
+  .body-copy {
+    @apply text-[1.05rem] font-medium leading-relaxed text-ink-muted;
   }
 }
 

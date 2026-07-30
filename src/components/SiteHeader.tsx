@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { AnimatedBackground } from '@/components/core/animated-background'
+import { BrandMark } from '@/components/BrandMark'
 import { NAV_ITEMS } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
@@ -25,41 +26,19 @@ export function SiteHeader() {
   const onHome = location.pathname === '/'
 
   return (
-    <header className="sticky top-0 z-[100] pt-3.5">
+    <header className="sticky top-0 z-[100] pt-3">
       <div className="mx-auto max-w-content px-6 md:px-10">
-        <div className="neu-header relative flex min-h-[58px] items-center justify-between gap-4 rounded-pill px-4 py-2 pl-4">
-          <Link
-            to="/"
-            className="flex shrink-0 items-center gap-2.5 font-display text-[1.2rem] font-bold tracking-tight text-ink no-underline hover:no-underline"
-          >
-            <img
-              src="/assets/sportiv_logo.png"
-              alt=""
-              width={34}
-              height={34}
-              className="h-[34px] w-[34px] object-contain"
-            />
-            Sportiv
-          </Link>
-
-          <button
-            type="button"
-            className="neu-raised flex h-[42px] w-[42px] items-center justify-center rounded-full border-0 p-0 lg:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="relative block h-0.5 w-4 bg-court before:absolute before:left-0 before:top-[-5px] before:block before:h-0.5 before:w-4 before:bg-court after:absolute after:left-0 after:top-[5px] after:block after:h-0.5 after:w-4 after:bg-court" />
-          </button>
+        <div className="neu-header relative grid min-h-[56px] grid-cols-[auto_1fr_auto] items-center gap-3 rounded-pill px-3 py-2 sm:px-4">
+          <BrandMark size="md" />
 
           <nav
-            className="hidden flex-1 items-center justify-center lg:flex"
+            className="hidden items-center justify-center lg:flex"
             aria-label="Primary"
           >
-            <div className="flex flex-row">
+            <div className="neu-inset flex rounded-pill p-1">
               <AnimatedBackground
                 enableHover
-                className="rounded-lg bg-court-soft"
+                className="rounded-pill bg-court-soft"
                 transition={{
                   type: 'spring',
                   bounce: 0.2,
@@ -72,10 +51,10 @@ export function SiteHeader() {
                     href={sectionHref(item.id, location.pathname)}
                     data-id={item.id}
                     className={cn(
-                      'px-3.5 py-2 text-[0.95rem] font-medium text-ink-muted transition-colors duration-300 hover:text-ink hover:no-underline',
+                      'px-3.5 py-2 text-sm font-semibold text-ink-muted transition-colors duration-300 hover:text-ink hover:no-underline',
                       onHome &&
                         activeId === item.id &&
-                        'font-semibold text-court',
+                        'font-bold text-court',
                     )}
                   >
                     {item.label}
@@ -85,26 +64,38 @@ export function SiteHeader() {
             </div>
           </nav>
 
-          <div className="hidden lg:block">
-            <Suspense
-              fallback={
-                <span
-                  className={waitlistBtnClass}
-                  aria-hidden
-                  style={{ minWidth: 120, minHeight: 40 }}
+          <div className="flex items-center justify-end gap-2">
+            <div className="hidden lg:block">
+              <Suspense
+                fallback={
+                  <span
+                    className={waitlistBtnClass}
+                    aria-hidden
+                    style={{ minWidth: 120, minHeight: 40 }}
+                  />
+                }
+              >
+                <WaitlistDialog
+                  triggerLabel="Join waitlist"
+                  triggerClassName={waitlistBtnClass}
                 />
-              }
+              </Suspense>
+            </div>
+
+            <button
+              type="button"
+              className="neu-raised-sm flex h-10 w-10 items-center justify-center rounded-full border-0 p-0 lg:hidden"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
             >
-              <WaitlistDialog
-                triggerLabel="Join waitlist"
-                triggerClassName={waitlistBtnClass}
-              />
-            </Suspense>
+              <span className="relative block h-0.5 w-4 bg-court before:absolute before:left-0 before:top-[-5px] before:block before:h-0.5 before:w-4 before:bg-court after:absolute after:left-0 after:top-[5px] after:block after:h-0.5 after:w-4 after:bg-court" />
+            </button>
           </div>
 
           {open && (
             <nav
-              className="neu-raised absolute left-0 right-0 top-[calc(100%+10px)] z-50 flex flex-col gap-0.5 rounded-[20px] p-3 lg:hidden"
+              className="neu-raised absolute left-0 right-0 top-[calc(100%+10px)] z-50 col-span-3 flex flex-col gap-0.5 rounded-[20px] p-3 lg:hidden"
               aria-label="Primary"
             >
               {NAV_ITEMS.map((item) => (
@@ -112,10 +103,10 @@ export function SiteHeader() {
                   key={item.id}
                   href={sectionHref(item.id, location.pathname)}
                   className={cn(
-                    'rounded-xl px-3.5 py-3 text-[0.95rem] font-medium text-ink-muted no-underline hover:bg-court-soft hover:text-ink hover:no-underline',
+                    'rounded-xl px-3.5 py-3 text-[0.95rem] font-semibold text-ink-muted no-underline hover:bg-court-soft hover:text-ink hover:no-underline',
                     onHome &&
                       activeId === item.id &&
-                      'bg-court-soft font-semibold text-court',
+                      'bg-court-soft font-bold text-court',
                   )}
                   onClick={() => setOpen(false)}
                 >
