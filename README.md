@@ -1,6 +1,6 @@
-# Sportiv landing page
+﻿# Sportiv landing page
 
-Vite + React + Tailwind marketing site for [sportiv.app](https://sportiv.app) — soft Court Orange neumorphism, Anime.js page motion, and Motion Primitives for nav/dialog/tabs.
+Vite + React + Tailwind marketing site for [sportiv.app](https://sportiv.app).
 
 ## Local preview
 
@@ -31,3 +31,7 @@ VITE_FORMSPREE_CONTACT_ID=
 3. Deploy. Point `sportiv.app` / `www.sportiv.app` at the Vercel project when ready.
 
 If Formspree IDs are unset, waitlist and contact forms use a mailto fallback to support@sportiv.app.
+
+## Documentation
+
+Project docs (including landing rating notes and archived Spinder context) are in [`docs/`](docs/).

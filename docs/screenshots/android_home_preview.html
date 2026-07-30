@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sportiv — Home (Discover)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: #F7F7F8;
+      margin: 0;
+      padding: 0;
+    }
+    .phone {
+      width: 390px;
+      height: 844px;
+      background: #F7F7F8;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px 8px 16px;
+      gap: 10px;
+      background: #F7F7F8;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FF6B00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .brand { font-size: 22px; font-weight: 800; color: #111; flex: 1; }
+    .icon-btn {
+      width: 40px; height: 40px; border: none; background: transparent;
+      font-size: 22px; color: #111; cursor: default;
+    }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #F0F0F2; display: flex; align-items: center; justify-content: center;
+      color: #999; font-size: 20px;
+    }
+    .deck {
+      flex: 1;
+      position: relative;
+      padding: 8px 16px 0;
+    }
+    .card {
+      height: calc(100% - 88px);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+      display: flex;
+      flex-direction: column;
+    }
+    .hero {
+      flex: 5;
+      position: relative;
+      background: linear-gradient(180deg, #F0F0F2 0%, #E8E8EC 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-icon { font-size: 72px; opacity: .35; filter: sepia(1) saturate(4) hue-rotate(-10deg); }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+    }
+    .sport-pill {
+      position: absolute; top: 14px; left: 14px; z-index: 1;
+      background: rgba(255,255,255,.92);
+      padding: 6px 12px; border-radius: 20px;
+      font-size: 13px; font-weight: 600; color: #111;
+    }
+    .hero-meta {
+      position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 1;
+    }
+    .pills { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .pill-orange {
+      background: #FF6B00; color: #fff; font-size: 11px; font-weight: 700;
+      padding: 5px 10px; border-radius: 16px; letter-spacing: .3px;
+    }
+    .pill-white {
+      background: rgba(255,255,255,.9); color: #111; font-size: 12px; font-weight: 600;
+      padding: 5px 10px; border-radius: 16px;
+    }
+    .hero-title {
+      color: #fff; font-size: 22px; font-weight: 800; line-height: 1.15;
+    }
+    .details {
+      flex: 2;
+      background: rgba(255,255,255,.95);
+      padding: 14px 16px 16px;
+    }
+    .detail-row {
+      display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px;
+    }
+    .detail-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,107,0,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .detail-text { font-size: 14px; font-weight: 600; color: #111; }
+    .detail-sub { font-size: 12px; color: #6B6B6B; margin-top: 2px; }
+    .divider { height: 1px; background: rgba(17,17,17,.1); margin: 12px 0; }
+    .host { display: flex; gap: 10px; align-items: center; }
+    .host-avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: #F0F0F2;
+      display: flex; align-items: center; justify-content: center; color: #999;
+    }
+    .host-label { font-size: 11px; color: #6B6B6B; }
+    .host-name { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+    .verified { color: #FF6B00; font-size: 14px; }
+    .actions {
+      position: absolute; left: 0; right: 0; bottom: 24px;
+      display: flex; justify-content: center; gap: 28px;
+    }
+    .btn-pass, .btn-like {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .btn-pass { background: #fff; color: #E53935; }
+    .btn-like { background: #FF6B00; color: #fff; box-shadow: 0 4px 12px rgba(255,107,0,.4); }
+    .nav {
+      background: #fff;
+      border-top: 1px solid #F0F0F2;
+      display: flex;
+      padding: 8px 0 12px;
+    }
+    .nav-item {
+      flex: 1; text-align: center; font-size: 12px; color: #6B6B6B;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .nav-item.active { color: #FF6B00; font-weight: 600; }
+    .nav-icon { font-size: 24px; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header class="header">
+      <img src="../../landing/assets/sportiv_logo.png" alt="" width="36" height="36" style="border-radius:50%" />
+      <div class="brand">Sportiv</div>
+      <button class="icon-btn" aria-hidden="true">⚙</button>
+      <div class="avatar">👤</div>
+    </header>
+
+    <div class="deck">
+      <article class="card">
+        <div class="hero">
+          <span class="hero-icon">🎾</span>
+          <span class="sport-pill">Padel</span>
+          <div class="hero-meta">
+            <div class="pills">
+              <span class="pill-orange">INTERMEDIATE</span>
+              <span class="pill-white">📍 2.4 km away</span>
+            </div>
+            <h1 class="hero-title">Padel Partner</h1>
+          </div>
+        </div>
+        <div class="details">
+          <div class="detail-row">
+            <div class="detail-icon">📅</div>
+            <div>
+              <div class="detail-text">Flexible — message to schedule</div>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">📍</div>
+            <div>
+              <div class="detail-text">Legends Arena</div>
+              <div class="detail-sub">Karachi</div>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">👥</div>
+            <div>
+              <div class="detail-text">1 partner spot</div>
+              <div class="detail-sub">1 of 2</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="host">
+            <div class="host-avatar">👤</div>
+            <div>
+              <div class="host-label">Hosted by</div>
+              <div class="host-name">Ayesha K. <span class="verified">✓</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <div class="actions">
+        <div class="btn-pass">✕</div>
+        <div class="btn-like">✓</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-item active"><span class="nav-icon">🧭</span>Discover</div>
+      <div class="nav-item"><span class="nav-icon">⚡</span>Matches</div>
+      <div class="nav-item"><span class="nav-icon">💬</span>Messages</div>
+      <div class="nav-item"><span class="nav-icon">👤</span>Profile</div>
+    </nav>
+  </div>
+</body>
+</html>
