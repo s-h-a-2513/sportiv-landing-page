@@ -45,28 +45,29 @@ In the Vercel project → **Settings → Domains**:
 
 ## Formspree waitlist & contact forms
 
-| Form | Where | Env var |
-|------|-------|---------|
-| Waitlist | Dialog (`WaitlistDialog.tsx`) | `VITE_FORMSPREE_WAITLIST_ID` |
-| Contact | `#contact` on home | `VITE_FORMSPREE_CONTACT_ID` |
+Uses [`@formspree/react`](https://github.com/formspree/formspree-js/tree/master/packages/formspree-react) (`useForm` + `ValidationError`) — Ajax submit with success/error UI (no full-page redirect).
 
-IDs are read from Vite env (`landing/src/lib/formspree.ts`). Never hardcode Formspree placeholders in the client.
+| Form | Where | Env var | Default ID |
+|------|-------|---------|------------|
+| Waitlist | Dialog (`WaitlistDialog.tsx`) | `VITE_FORMSPREE_WAITLIST_ID` | `xqeroeoo` |
+| Contact | `#contact` (`ContactForm.tsx`) | `VITE_FORMSPREE_CONTACT_ID` | `xqeroeoo` |
+
+Both forms share one Formspree endpoint by default; submissions include a hidden `form` field (`waitlist` | `contact`) and `_subject` so you can tell them apart in the inbox.
 
 ### Setup
 
-1. Create a free account at [formspree.io](https://formspree.io).
-2. Create two forms (or one form with different `_subject` values).
-3. Copy each form’s ID from the endpoint URL: `https://formspree.io/f/<ID>`.
-4. Set in `landing/.env` (local) and Vercel → Environment Variables (production):
+1. Form already created: `https://formspree.io/f/xqeroeoo`
+2. Local: `landing/.env` (gitignored) or copy from `.env.example`
+3. Vercel → Environment Variables (Production):
 
 ```
-VITE_FORMSPREE_WAITLIST_ID=<id>
-VITE_FORMSPREE_CONTACT_ID=<id>
+VITE_FORMSPREE_WAITLIST_ID=xqeroeoo
+VITE_FORMSPREE_CONTACT_ID=xqeroeoo
 ```
 
-5. Optionally set notification email to `support@sportiv.app` in Formspree’s form settings.
+4. Optionally set notification email to `support@sportiv.app` in Formspree form settings.
 
-If either ID is unset, that form shows a **mailto fallback** to [support@sportiv.app](mailto:support@sportiv.app) instead of posting to Formspree.
+Redeploy after changing Vercel env so Vite can bake the IDs into the build.
 
 ## Brand & neumorphism
 

@@ -1,13 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { Container } from '@/components/ui'
 import { BrandMark } from '@/components/BrandMark'
-import { Link000 } from '@/components/ui/skiper-ui/skiper40'
+import { ContactForm } from '@/components/ContactForm'
 import { usePageMotion } from '@/hooks/useAnimeScope'
-import {
-  CONTACT_FORMSPREE_ID,
-  SUPPORT_MAILTO,
-  formspreeAction,
-} from '@/lib/formspree'
 
 const WaitlistDialog = lazy(() =>
   import('@/components/WaitlistDialog').then((m) => ({
@@ -45,7 +40,6 @@ function WaitlistFallback({ className }: { className?: string }) {
 
 export function HomePage() {
   const { root } = usePageMotion()
-  const contactAction = formspreeAction(CONTACT_FORMSPREE_ID)
 
   return (
     <div ref={root}>
@@ -146,71 +140,7 @@ export function HomePage() {
                   Questions, partnerships, or feedback — we typically respond
                   within 2 business days.
                 </p>
-                {contactAction ? (
-                  <form className="space-y-3.5" action={contactAction} method="POST">
-                    <input
-                      type="hidden"
-                      name="_subject"
-                      value="Sportiv contact"
-                    />
-                    <label className="block text-sm font-semibold text-ink">
-                      Name <span className="font-medium text-ink-muted">(optional)</span>
-                      <input
-                        type="text"
-                        name="name"
-                        autoComplete="name"
-                        placeholder="Your name"
-                        className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
-                      />
-                    </label>
-                    <label className="block text-sm font-semibold text-ink">
-                      Email
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        autoComplete="email"
-                        placeholder="you@email.com"
-                        className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
-                      />
-                    </label>
-                    <label className="block text-sm font-semibold text-ink">
-                      Message
-                      <textarea
-                        name="message"
-                        required
-                        rows={3}
-                        placeholder="How can we help?"
-                        className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
-                      />
-                    </label>
-                    <button
-                      type="submit"
-                      className="neu-btn inline-flex items-center justify-center rounded-pill px-7 py-3 text-[0.95rem] font-semibold text-white"
-                    >
-                      Send message
-                    </button>
-                    <p className="m-0 text-sm font-medium text-ink-muted">
-                      Or email{' '}
-                      <Link000 href="mailto:support@sportiv.app">
-                        support@sportiv.app
-                      </Link000>
-                      .
-                    </p>
-                  </form>
-                ) : (
-                  <div className="space-y-3.5">
-                    <p className="body-copy m-0">
-                      The contact form isn’t configured yet. Reach us directly:
-                    </p>
-                    <a
-                      href={SUPPORT_MAILTO}
-                      className="neu-btn inline-flex items-center justify-center rounded-pill px-7 py-3 text-[0.95rem] font-semibold text-white no-underline hover:text-white hover:no-underline"
-                    >
-                      Email support@sportiv.app
-                    </a>
-                  </div>
-                )}
+                <ContactForm />
               </div>
             </div>
           </Container>

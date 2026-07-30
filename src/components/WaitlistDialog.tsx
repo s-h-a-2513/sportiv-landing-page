@@ -1,3 +1,4 @@
+import { useForm, ValidationError } from '@formspree/react'
 import {
   Dialog,
   DialogClose,
@@ -8,11 +9,7 @@ import {
   DialogTrigger,
 } from '@/components/core/dialog'
 import { cn } from '@/lib/utils'
-import {
-  SUPPORT_MAILTO,
-  WAITLIST_FORMSPREE_ID,
-  formspreeAction,
-} from '@/lib/formspree'
+import { WAITLIST_FORMSPREE_ID } from '@/lib/formspree'
 
 const waitlistVariants = {
   initial: { opacity: 0, scale: 0.95, y: 8 },
@@ -26,13 +23,73 @@ type WaitlistDialogProps = {
   onOpen?: () => void
 }
 
+function WaitlistForm() {
+  const [state, handleSubmit] = useForm(WAITLIST_FORMSPREE_ID)
+
+  if (state.succeeded) {
+    return (
+      <p className="body-copy m-0 text-[0.95rem]">
+        You’re on the list — we’ll email you when Sportiv launches on Google
+        Play.
+      </p>
+    )
+  }
+
+  return (
+    <form className="space-y-4 text-left" onSubmit={handleSubmit}>
+      <input type="hidden" name="_subject" value="Sportiv waitlist signup" />
+      <input type="hidden" name="form" value="waitlist" />
+      <label className="block text-sm font-semibold text-ink">
+        Name <span className="font-medium text-ink-muted">(optional)</span>
+        <input
+          type="text"
+          name="name"
+          autoComplete="name"
+          placeholder="Your name"
+          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+        />
+      </label>
+      <label className="block text-sm font-semibold text-ink">
+        Email
+        <input
+          id="waitlist-email"
+          type="email"
+          name="email"
+          required
+          autoComplete="email"
+          placeholder="you@email.com"
+          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+        />
+      </label>
+      <ValidationError
+        prefix="Email"
+        field="email"
+        errors={state.errors}
+        className="block text-sm font-medium text-red-700"
+      />
+      <ValidationError
+        errors={state.errors}
+        className="block text-sm font-medium text-red-700"
+      />
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="neu-btn w-full rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white disabled:opacity-70"
+      >
+        {state.submitting ? 'Joining…' : 'Join the waitlist'}
+      </button>
+      <p className="m-0 text-center text-sm font-medium text-ink-muted">
+        No spam — launch updates only.
+      </p>
+    </form>
+  )
+}
+
 export function WaitlistDialog({
   triggerLabel = 'Join the waitlist',
   triggerClassName,
   onOpen,
 }: WaitlistDialogProps) {
-  const action = formspreeAction(WAITLIST_FORMSPREE_ID)
-
   return (
     <Dialog
       variants={waitlistVariants}
@@ -61,58 +118,7 @@ export function WaitlistDialog({
             Play.
           </DialogDescription>
         </DialogHeader>
-        {action ? (
-          <form className="space-y-4 text-left" action={action} method="POST">
-            <input
-              type="hidden"
-              name="_subject"
-              value="Sportiv waitlist signup"
-            />
-            <label className="block text-sm font-medium text-ink">
-              Name <span className="text-ink-muted">(optional)</span>
-              <input
-                type="text"
-                name="name"
-                autoComplete="name"
-                placeholder="Your name"
-                className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
-              />
-            </label>
-            <label className="block text-sm font-medium text-ink">
-              Email
-              <input
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                placeholder="you@email.com"
-                className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
-              />
-            </label>
-            <button
-              type="submit"
-              className="neu-btn w-full rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white"
-            >
-              Join the waitlist
-            </button>
-            <p className="m-0 text-center text-sm text-ink-muted">
-              No spam — launch updates only.
-            </p>
-          </form>
-        ) : (
-          <div className="space-y-4 text-left">
-            <p className="m-0 text-sm text-ink-muted">
-              Waitlist signup isn’t configured yet. Email us and we’ll add you
-              manually.
-            </p>
-            <a
-              href={`${SUPPORT_MAILTO.replace('inquiry', 'waitlist')}`}
-              className="neu-btn inline-flex w-full items-center justify-center rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white no-underline hover:text-white hover:no-underline"
-            >
-              Email support@sportiv.app
-            </a>
-          </div>
-        )}
+        <WaitlistForm />
       </DialogContent>
     </Dialog>
   )

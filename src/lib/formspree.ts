@@ -1,18 +1,26 @@
-/** Formspree IDs — set via Vite env (public, not secrets). */
+/** Formspree form IDs — public (not secrets). Overridable via Vite env. */
 
-export function formspreeAction(id: string | undefined): string | null {
-  const trimmed = id?.trim()
-  if (!trimmed || trimmed.startsWith('YOUR_')) return null
-  return `https://formspree.io/f/${trimmed}`
+export const DEFAULT_FORMSPREE_ID = 'xqeroeoo'
+
+export function resolveFormspreeId(envValue: string | undefined): string {
+  const trimmed = envValue?.trim()
+  if (!trimmed || trimmed.startsWith('YOUR_')) return DEFAULT_FORMSPREE_ID
+  return trimmed
 }
 
-export const WAITLIST_FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_WAITLIST_ID as
-  | string
-  | undefined
+/** @deprecated Prefer resolveFormspreeId + @formspree/react */
+export function formspreeAction(id: string | undefined): string | null {
+  const resolved = resolveFormspreeId(id)
+  return `https://formspree.io/f/${resolved}`
+}
 
-export const CONTACT_FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_CONTACT_ID as
-  | string
-  | undefined
+export const WAITLIST_FORMSPREE_ID = resolveFormspreeId(
+  import.meta.env.VITE_FORMSPREE_WAITLIST_ID,
+)
+
+export const CONTACT_FORMSPREE_ID = resolveFormspreeId(
+  import.meta.env.VITE_FORMSPREE_CONTACT_ID,
+)
 
 export const SUPPORT_MAILTO =
   'mailto:support@sportiv.app?subject=Sportiv%20inquiry'
