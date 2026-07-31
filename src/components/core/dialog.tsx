@@ -241,7 +241,7 @@ function DialogContent({ children, className, container }: DialogContentProps) {
           transition={transition}
           onAnimationComplete={onAnimationComplete}
           className={cn(
-            'fixed inset-0 m-auto h-fit max-h-[calc(100vh-2rem)] rounded-lg border border-zinc-200 p-0 shadow-lg dark:border dark:border-zinc-700',
+            'fixed inset-0 m-auto h-fit max-h-[calc(100vh-2rem)] rounded-lg border border-black/5 p-0 shadow-lg dark:border-white/10',
             'backdrop:bg-black/50 backdrop:backdrop-blur-xs',
             'open:flex open:flex-col',
             className,
@@ -298,7 +298,7 @@ function DialogDescription({ children, className }: DialogDescriptionProps) {
   return (
     <p
       id={context.ids.description}
-      className={cn('text-base text-zinc-500', className)}
+      className={cn('body-copy text-base', className)}
     >
       {children}
     </p>

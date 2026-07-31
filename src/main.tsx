@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import '@fontsource-variable/outfit/wght.css'
 import '@fontsource-variable/dm-sans/wght.css'
+import { ThemeProvider } from '@/components/theme-provider'
 import { AppLayout } from './App'
 import { HomePage } from '@/pages/HomePage'
 import { PrivacyPage } from '@/pages/PrivacyPage'
@@ -36,15 +37,17 @@ function ScrollToHash() {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollToHash />
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="privacy" element={<PrivacyPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <BrowserRouter>
+        <ScrollToHash />
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -37,10 +38,7 @@ export default {
         'neu-in':
           'inset 5px 5px 12px rgba(26, 20, 16, 0.08), inset -4px -4px 10px rgba(255, 255, 255, 0.95)',
       },
-      backgroundImage: {
-        'wash-scene':
-          'radial-gradient(ellipse 70% 50% at 85% 8%, rgba(255,107,0,0.12), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 70%, rgba(255,107,0,0.05), transparent 50%), #FFFAF6',
-      },
+      backgroundImage: {},
     },
   },
   plugins: [],

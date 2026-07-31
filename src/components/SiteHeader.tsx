@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { AnimatedBackground } from '@/components/core/animated-background'
 import { BrandMark } from '@/components/BrandMark'
+import { NeumorphicThemeToggle } from '@/components/NeumorphicThemeToggle'
 import { NAV_ITEMS } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
@@ -65,6 +66,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center justify-end gap-2">
+            <NeumorphicThemeToggle />
             <div className="hidden lg:block">
               <Suspense
                 fallback={

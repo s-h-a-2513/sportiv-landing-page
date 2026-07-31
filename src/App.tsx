@@ -4,9 +4,9 @@ import { SiteFooter } from '@/components/SiteFooter'
 
 export function AppLayout() {
   return (
-    <div className="relative min-h-screen bg-wash-scene">
+    <div className="bg-wash-scene relative min-h-screen">
       <div
-        className="pointer-events-none fixed inset-0 -z-10 bg-wash-scene"
+        className="bg-wash-scene pointer-events-none fixed inset-0 -z-10"
         aria-hidden
       />
       <SiteHeader />

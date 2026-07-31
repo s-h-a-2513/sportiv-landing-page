@@ -9,7 +9,59 @@
   --neu-dark: rgba(26, 20, 16, 0.18);
   --neu-dark-soft: rgba(26, 20, 16, 0.1);
   --neu-orange-glow: rgba(255, 107, 0, 0.28);
+  --ink: #1a1410;
+  --ink-muted: #3d342e;
+  --wash-scene:
+    radial-gradient(
+      ellipse 70% 50% at 85% 8%,
+      rgba(255, 107, 0, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 10% 70%,
+      rgba(255, 107, 0, 0.05),
+      transparent 50%
+    ),
+    #fffaf6;
   /* Classic soft UI: same base as page, dual light/dark shadows */
+  --neu-shadow-out:
+    9px 9px 22px var(--neu-dark-soft),
+    -9px -9px 22px var(--neu-light);
+  --neu-shadow-out-sm:
+    5px 5px 12px var(--neu-dark-soft),
+    -5px -5px 12px var(--neu-light);
+  --neu-shadow-in:
+    inset 6px 6px 14px var(--neu-dark-soft),
+    inset -6px -6px 14px var(--neu-light);
+  --neu-shadow-pressed:
+    inset 7px 7px 16px var(--neu-dark),
+    inset -4px -4px 10px var(--neu-light);
+  --neu-shadow-btn:
+    6px 6px 16px var(--neu-orange-glow),
+    -5px -5px 14px var(--neu-light);
+}
+
+html.dark {
+  --neu-bg: #221c18;
+  --neu-bg-soft: #2a231e;
+  --neu-light: rgba(255, 255, 255, 0.06);
+  --neu-dark: rgba(0, 0, 0, 0.55);
+  --neu-dark-soft: rgba(0, 0, 0, 0.45);
+  --neu-orange-glow: rgba(255, 107, 0, 0.35);
+  --ink: #f5ebe3;
+  --ink-muted: #c9b8ab;
+  --wash-scene:
+    radial-gradient(
+      ellipse 70% 50% at 85% 8%,
+      rgba(255, 107, 0, 0.16),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 10% 70%,
+      rgba(255, 107, 0, 0.08),
+      transparent 50%
+    ),
+    #221c18;
   --neu-shadow-out:
     9px 9px 22px var(--neu-dark-soft),
     -9px -9px 22px var(--neu-light);
@@ -33,9 +85,9 @@
   }
 
   body {
-    @apply m-0 font-body text-base font-medium leading-relaxed text-ink antialiased overflow-x-hidden;
+    @apply m-0 font-body text-base font-medium leading-relaxed antialiased overflow-x-hidden;
     background: var(--neu-bg);
-    color: #1a1410;
+    color: var(--ink);
   }
 
   a {
@@ -100,12 +152,12 @@
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-in);
     border: none;
-    color: #1a1410;
+    color: var(--ink);
   }
 
   .neu-input::placeholder {
-    color: #6b5e55;
-    opacity: 0.85;
+    color: var(--ink-muted);
+    opacity: 0.75;
   }
 
   .neu-input:focus {
@@ -122,7 +174,7 @@
 
   .neu-tab {
     background: transparent;
-    color: #3d342e;
+    color: var(--ink-muted);
     transition: color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
 
@@ -139,13 +191,39 @@
     padding: 12px;
   }
 
+  .neu-theme-toggle {
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-in);
+    cursor: pointer;
+  }
+
+  .neu-theme-knob {
+    background: var(--neu-bg);
+    box-shadow: var(--neu-shadow-out-sm);
+    transform: translateX(0);
+  }
+
+  .neu-theme-knob-ready {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .neu-theme-knob-dark {
+    transform: translateX(1.5rem);
+  }
+
   .section-title {
-    @apply font-display font-bold tracking-tight text-ink;
+    @apply font-display font-bold tracking-tight;
+    color: var(--ink);
     font-size: clamp(1.65rem, 3.2vw, 2.15rem);
   }
 
   .body-copy {
-    @apply text-[1.05rem] font-medium leading-relaxed text-ink-muted;
+    @apply text-[1.05rem] font-medium leading-relaxed;
+    color: var(--ink-muted);
+  }
+
+  .bg-wash-scene {
+    background-image: var(--wash-scene);
   }
 }
 
@@ -153,6 +231,18 @@
   .scroll-mt-header {
     scroll-margin-top: 88px;
   }
+
+  .text-ink {
+    color: var(--ink);
+  }
+
+  .text-ink-muted {
+    color: var(--ink-muted);
+  }
+}
+
+html.dark .bg-court-soft {
+  background-color: rgba(255, 107, 0, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,6 +251,10 @@
   }
 
   .neu-btn {
+    transition: none;
+  }
+
+  .neu-theme-knob-ready {
     transition: none;
   }
 
