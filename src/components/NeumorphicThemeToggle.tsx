@@ -39,15 +39,15 @@ export function NeumorphicThemeToggle({ className }: NeumorphicThemeToggleProps)
       >
         <Sun
           className={cn(
-            'h-3.5 w-3.5 transition-colors duration-200',
-            isDark ? 'text-ink-muted/50' : 'text-court',
+            'h-3.5 w-3.5 transition-opacity duration-200',
+            isDark ? 'text-ink-muted opacity-55' : 'opacity-0',
           )}
           strokeWidth={2.25}
         />
         <Moon
           className={cn(
-            'h-3.5 w-3.5 transition-colors duration-200',
-            isDark ? 'text-court' : 'text-ink-muted/50',
+            'h-3.5 w-3.5 transition-opacity duration-200',
+            isDark ? 'opacity-0' : 'text-ink-muted opacity-55',
           )}
           strokeWidth={2.25}
         />

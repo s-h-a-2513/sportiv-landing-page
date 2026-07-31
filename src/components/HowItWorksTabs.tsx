@@ -62,20 +62,26 @@ export function HowItWorksTabs() {
         aria-hidden
       />
 
-      <div className="neu-inset mx-auto mb-6 flex w-full max-w-md flex-wrap justify-center gap-1 rounded-pill p-1.5 sm:w-fit">
-        {TABS.map((tab, index) => (
-          <button
-            key={tab.id}
-            type="button"
-            className={cn(
-              'neu-tab min-w-[9.5rem] flex-1 rounded-pill px-5 py-2.5 text-sm font-semibold sm:flex-none',
-            )}
-            data-active={activeIndex === index ? 'true' : 'false'}
-            onClick={() => select(index)}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="mx-auto mb-6 flex w-full max-w-lg flex-wrap justify-center gap-3 sm:w-fit">
+        {TABS.map((tab, index) => {
+          const active = activeIndex === index
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              className={cn(
+                'min-w-[9.5rem] flex-1 rounded-pill px-5 py-2.5 text-sm font-semibold sm:flex-none',
+                active
+                  ? 'neu-btn text-white'
+                  : 'bg-transparent text-ink-muted transition-colors hover:text-ink',
+              )}
+              aria-pressed={active}
+              onClick={() => select(index)}
+            >
+              {tab.label}
+            </button>
+          )
+        })}
       </div>
 
       <div className="neu-inset rounded-[20px] px-5 py-5 md:px-6 md:py-6">

@@ -22,11 +22,11 @@ export function BrandMark({
   const inner = (
     <>
       <img
-        src="/assets/sportiv_logo.png"
+        src="/assets/sportiv_mark.png"
         alt=""
         width={s.img}
         height={s.img}
-        className="object-contain"
+        className="aspect-square h-auto w-auto shrink-0 object-contain"
         style={{ width: s.img, height: s.img }}
       />
       <span className={cn('font-display font-bold tracking-tight text-ink', s.text)}>

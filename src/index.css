@@ -6,8 +6,8 @@
   --neu-bg: #fffaf6;
   --neu-bg-soft: #fff4eb;
   --neu-light: #ffffff;
-  --neu-dark: rgba(26, 20, 16, 0.18);
-  --neu-dark-soft: rgba(26, 20, 16, 0.1);
+  --neu-dark: rgba(26, 20, 16, 0.22);
+  --neu-dark-soft: rgba(26, 20, 16, 0.16);
   --neu-orange-glow: rgba(255, 107, 0, 0.28);
   --ink: #1a1410;
   --ink-muted: #3d342e;
@@ -23,22 +23,25 @@
       transparent 50%
     ),
     #fffaf6;
-  /* Classic soft UI: same base as page, dual light/dark shadows */
+  /* Stronger dual shadows so light mode reads like soft UI */
   --neu-shadow-out:
-    9px 9px 22px var(--neu-dark-soft),
-    -9px -9px 22px var(--neu-light);
+    10px 10px 24px var(--neu-dark-soft),
+    -8px -8px 20px var(--neu-light);
   --neu-shadow-out-sm:
-    5px 5px 12px var(--neu-dark-soft),
+    6px 6px 14px var(--neu-dark-soft),
     -5px -5px 12px var(--neu-light);
   --neu-shadow-in:
-    inset 6px 6px 14px var(--neu-dark-soft),
+    inset 7px 7px 16px var(--neu-dark-soft),
     inset -6px -6px 14px var(--neu-light);
   --neu-shadow-pressed:
-    inset 7px 7px 16px var(--neu-dark),
+    inset 8px 8px 18px var(--neu-dark),
     inset -4px -4px 10px var(--neu-light);
   --neu-shadow-btn:
     6px 6px 16px var(--neu-orange-glow),
     -5px -5px 14px var(--neu-light);
+  --neu-shadow-knob:
+    4px 4px 10px rgba(26, 20, 16, 0.12),
+    -3px -3px 8px var(--neu-light);
 }
 
 html.dark {
@@ -77,6 +80,9 @@ html.dark {
   --neu-shadow-btn:
     6px 6px 16px var(--neu-orange-glow),
     -5px -5px 14px var(--neu-light);
+  --neu-shadow-knob:
+    4px 4px 10px rgba(0, 0, 0, 0.4),
+    -3px -3px 8px var(--neu-light);
 }
 
 @layer base {
@@ -195,11 +201,12 @@ html.dark {
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-in);
     cursor: pointer;
+    overflow: hidden;
   }
 
   .neu-theme-knob {
     background: var(--neu-bg);
-    box-shadow: var(--neu-shadow-out-sm);
+    box-shadow: var(--neu-shadow-knob);
     transform: translateX(0);
   }
 
@@ -208,7 +215,7 @@ html.dark {
   }
 
   .neu-theme-knob-dark {
-    transform: translateX(1.5rem);
+    transform: translateX(2rem);
   }
 
   .section-title {
