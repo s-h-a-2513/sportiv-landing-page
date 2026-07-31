@@ -75,8 +75,9 @@ export function HomePage() {
             </div>
 
             <div className="hero-phone relative mx-auto w-full max-w-[280px] opacity-0 lg:max-w-[300px]">
-              <div className="neu-phone rounded-[32px]">
-                <div className="overflow-hidden rounded-[22px] bg-ink">
+              <div className="phone-stage" aria-hidden />
+              <div className="phone-device">
+                <div className="phone-screen">
                   <picture>
                     <source
                       srcSet="/assets/app-home.webp"
@@ -92,6 +93,8 @@ export function HomePage() {
                       fetchPriority="high"
                     />
                   </picture>
+                  <span className="phone-island" aria-hidden />
+                  <span className="phone-home" aria-hidden />
                 </div>
               </div>
             </div>
