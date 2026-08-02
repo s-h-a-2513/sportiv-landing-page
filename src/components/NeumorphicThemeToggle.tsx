@@ -1,38 +1,47 @@
 import { useEffect, useState } from 'react'
-import { Monitor, Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
 
 const modes = [
   { value: 'light', icon: Sun, label: 'Light' },
   { value: 'dark', icon: Moon, label: 'Dark' },
-  { value: 'system', icon: Monitor, label: 'System' },
 ] as const
 
 type NeumorphicThemeToggleProps = {
   className?: string
 }
 
-/** Matches Sportiv Owner App theme control: light / dark / system. */
+/** Light / Dark only (no system). */
 export function NeumorphicThemeToggle({ className }: NeumorphicThemeToggleProps) {
-  const { theme, setTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Migrate any stored "system" preference to an explicit light/dark choice.
+  useEffect(() => {
+    if (!mounted) return
+    if (theme === 'system' && resolvedTheme) {
+      setTheme(resolvedTheme)
+    }
+  }, [mounted, theme, resolvedTheme, setTheme])
+
   if (!mounted) {
     return (
       <div
         className={cn(
-          'neu-theme-toggle inline-flex h-9 w-[108px] rounded-pill',
+          'neu-theme-toggle inline-flex h-9 w-[72px] rounded-pill',
           className,
         )}
         aria-hidden
       />
     )
   }
+
+  const activeTheme = theme === 'dark' || theme === 'light' ? theme : resolvedTheme
 
   return (
     <div
@@ -44,7 +53,7 @@ export function NeumorphicThemeToggle({ className }: NeumorphicThemeToggleProps)
       )}
     >
       {modes.map(({ value, icon: Icon, label }) => {
-        const active = theme === value
+        const active = activeTheme === value
         return (
           <button
             key={value}

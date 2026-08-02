@@ -181,9 +181,9 @@ Light mode shadows are intentionally **stronger** than early drafts so soft UI r
 
 ### 6.2 Theme toggle — `NeumorphicThemeToggle`
 
-- Same control as Owner App `ThemeToggle`: inset pill with **Light / Dark / System** icon buttons.
+- Inset pill with **Light / Dark** only (no system).
 - Active mode uses `.neu-theme-knob` + Court Orange icon; inactive muted.
-- `next-themes` with `attribute="class"`, `defaultTheme="light"`, `enableSystem`.
+- `next-themes` with `attribute="class"`, `defaultTheme="light"`, `enableSystem={false}`.
 
 ### 6.3 Primary CTA — Field Owner Dashboard
 
