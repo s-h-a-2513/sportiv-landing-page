@@ -5,23 +5,29 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Shared with Sportiv Owner App (CSS vars in index.css)
         court: {
-          DEFAULT: '#FF6B00',
-          dark: '#E55F00',
-          soft: '#FFF4EB',
+          DEFAULT: 'var(--court)',
+          dark: 'var(--court-dark)',
+          soft: 'var(--court-soft)',
         },
         ink: {
-          DEFAULT: '#1A1410',
-          muted: '#3D342E',
+          DEFAULT: 'var(--ink)',
+          muted: 'var(--ink-muted)',
         },
+        muted: 'var(--ink-muted)',
+        bg: 'var(--neu-bg)',
+        raised: 'var(--neu-bg)',
+        inset: 'var(--neu-bg)',
         wash: {
-          DEFAULT: '#FFFAF6',
-          deep: '#FFF1E6',
+          DEFAULT: 'var(--neu-bg)',
+          deep: 'var(--neu-bg-soft)',
         },
       },
       fontFamily: {
         display: ['"Outfit Variable"', 'Outfit', 'system-ui', 'sans-serif'],
         body: ['"DM Sans Variable"', 'DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['"DM Sans Variable"', 'DM Sans', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         content: '1140px',
@@ -30,13 +36,14 @@ export default {
         pill: '999px',
       },
       boxShadow: {
+        neu: 'var(--neu-shadow-out)',
+        'neu-sm': 'var(--neu-shadow-out-sm)',
+        'neu-in': 'var(--neu-shadow-in)',
+        'neu-btn': 'var(--neu-shadow-btn)',
         soft: '0 24px 60px rgba(26, 20, 16, 0.08)',
         phone: '0 40px 80px rgba(255, 107, 0, 0.18)',
         header: '0 10px 30px rgba(26, 20, 16, 0.05)',
         cta: '0 12px 28px rgba(255, 107, 0, 0.28)',
-        neu: '8px 8px 20px rgba(26, 20, 16, 0.08), -6px -6px 16px rgba(255, 255, 255, 0.95)',
-        'neu-in':
-          'inset 5px 5px 12px rgba(26, 20, 16, 0.08), inset -4px -4px 10px rgba(255, 255, 255, 0.95)',
       },
       backgroundImage: {},
     },

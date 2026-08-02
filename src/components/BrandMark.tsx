@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 
 const SIZES = {
-  sm: { img: 28, text: 'text-lg', gap: 'gap-2' },
+  sm: { img: 28, text: 'text-lg', gap: 'gap-2.5' },
   md: { img: 34, text: 'text-[1.2rem]', gap: 'gap-2.5' },
-  lg: { img: 48, text: 'text-2xl', gap: 'gap-3' },
+  lg: { img: 48, text: 'text-2xl', gap: 'gap-2.5' },
 } as const
 
 type BrandMarkProps = {

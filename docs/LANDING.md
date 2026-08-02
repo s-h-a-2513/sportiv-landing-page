@@ -71,20 +71,20 @@ Redeploy after changing Vercel env so Vite can bake the IDs into the build.
 
 ## Brand & neumorphism
 
-Aligned with `lib/core/theme/app_theme.dart` and Tailwind theme in `landing/tailwind.config.js`:
+**Full design system:** [LANDING_DESIGN_GUIDE.md](./LANDING_DESIGN_GUIDE.md).
 
-| Token | Hex |
-|-------|-----|
-| Court Orange | `#FF6B00` |
-| Soft | `#FFF4EB` |
-| Background (neu) | `#FFFAF6` |
-| Text | `#1A1410` / `#6F645C` |
+Quick tokens:
 
-Fonts: **Outfit** + **DM Sans** (self-hosted via `@fontsource-variable/*`, no Google Fonts CDN).
+| Token | Light | Dark |
+|-------|-------|------|
+| Court Orange | `#FF6B00` | `#FF6B00` |
+| Surface / page (`--neu-bg`) | `#FFFAF6` | `#221C18` |
+| Ink (`--ink`) | `#1A1410` | `#F5EBE3` |
+| Muted (`--ink-muted`) | `#3D342E` | `#C9B8AB` |
 
-Neumorph utilities in `landing/src/index.css`: `.neu-raised`, `.neu-inset`, `.neu-btn`, `.neu-input`, `.neu-header`, `.neu-chip`, `.neu-tab`.
+Fonts: **Outfit** + **DM Sans** (self-hosted via `@fontsource-variable/*`).
 
-Logo: `landing/public/assets/sportiv_logo.png`.
+Logo / favicon: square transparent `sportiv_mark.png` / `favicon.png` (not the old white-backed `sportiv_logo.png` in UI).
 
 ## Site map
 

@@ -46,7 +46,7 @@ function WaitlistForm() {
           name="name"
           autoComplete="name"
           placeholder="Your name"
-          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+          className="neu-input mt-1.5 w-full rounded-[20px] px-3.5 py-2.5 text-sm text-ink"
         />
       </label>
       <label className="block text-sm font-semibold text-ink">
@@ -58,23 +58,23 @@ function WaitlistForm() {
           required
           autoComplete="email"
           placeholder="you@email.com"
-          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+          className="neu-input mt-1.5 w-full rounded-[20px] px-3.5 py-2.5 text-sm text-ink"
         />
       </label>
       <ValidationError
         prefix="Email"
         field="email"
         errors={state.errors}
-        className="block text-sm font-medium text-red-700"
+        className="mt-1.5 block text-xs text-red-600 dark:text-red-400"
       />
       <ValidationError
         errors={state.errors}
-        className="block text-sm font-medium text-red-700"
+        className="mt-1.5 block text-xs text-red-600 dark:text-red-400"
       />
       <button
         type="submit"
         disabled={state.submitting}
-        className="neu-btn w-full rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white disabled:opacity-70"
+        className="neu-btn w-full rounded-full px-5 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state.submitting ? 'Joining…' : 'Join the waitlist'}
       </button>
@@ -103,7 +103,7 @@ export function WaitlistDialog({
       </DialogTrigger>
       <DialogContent
         className={cn(
-          'relative w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-2xl border border-white/40 bg-[var(--neu-bg)] p-6 sm:p-8',
+          'relative w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-[28px] border-0 bg-[var(--neu-bg)] p-6 md:p-8',
           'neu-raised',
           'backdrop:bg-[#1A1410]/55 backdrop:backdrop-blur-md',
         )}

@@ -25,7 +25,7 @@ export function ContactForm() {
           name="name"
           autoComplete="name"
           placeholder="Your name"
-          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+          className="neu-input mt-1.5 w-full rounded-[20px] px-3.5 py-2.5 text-sm text-ink"
         />
       </label>
       <label className="block text-sm font-semibold text-ink">
@@ -37,14 +37,14 @@ export function ContactForm() {
           required
           autoComplete="email"
           placeholder="you@email.com"
-          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+          className="neu-input mt-1.5 w-full rounded-[20px] px-3.5 py-2.5 text-sm text-ink"
         />
       </label>
       <ValidationError
         prefix="Email"
         field="email"
         errors={state.errors}
-        className="block text-sm font-medium text-red-700"
+        className="mt-1.5 block text-xs text-red-600 dark:text-red-400"
       />
       <label className="block text-sm font-semibold text-ink">
         Message
@@ -54,23 +54,23 @@ export function ContactForm() {
           required
           rows={3}
           placeholder="How can we help?"
-          className="neu-input mt-1.5 w-full rounded-xl px-4 py-3 text-ink"
+          className="neu-input mt-1.5 w-full rounded-[20px] px-3.5 py-2.5 text-sm text-ink"
         />
       </label>
       <ValidationError
         prefix="Message"
         field="message"
         errors={state.errors}
-        className="block text-sm font-medium text-red-700"
+        className="mt-1.5 block text-xs text-red-600 dark:text-red-400"
       />
       <ValidationError
         errors={state.errors}
-        className="block text-sm font-medium text-red-700"
+        className="mt-1.5 block text-xs text-red-600 dark:text-red-400"
       />
       <button
         type="submit"
         disabled={state.submitting}
-        className="neu-btn inline-flex items-center justify-center rounded-pill px-7 py-3 text-[0.95rem] font-semibold text-white disabled:opacity-70"
+        className="neu-btn inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state.submitting ? 'Sending…' : 'Send message'}
       </button>

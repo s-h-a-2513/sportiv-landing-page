@@ -11,6 +11,9 @@
   --neu-orange-glow: rgba(255, 107, 0, 0.28);
   --ink: #1a1410;
   --ink-muted: #3d342e;
+  --court: #ff6b00;
+  --court-dark: #e55f00;
+  --court-soft: #fff4eb;
   --wash-scene:
     radial-gradient(
       ellipse 70% 50% at 85% 8%,
@@ -53,6 +56,9 @@ html.dark {
   --neu-orange-glow: rgba(255, 107, 0, 0.35);
   --ink: #f5ebe3;
   --ink-muted: #c9b8ab;
+  --court: #ff6b00;
+  --court-dark: #e55f00;
+  --court-soft: rgba(255, 107, 0, 0.18);
   --wash-scene:
     radial-gradient(
       ellipse 70% 50% at 85% 8%,
@@ -105,7 +111,13 @@ html.dark {
   }
 
   :focus-visible {
-    @apply outline outline-2 outline-court outline-offset-[3px];
+    outline: 2px solid var(--court);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--court) 35%, transparent);
+    color: var(--ink);
   }
 }
 
@@ -184,10 +196,11 @@ html.dark {
     transition: color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
 
-  .neu-tab[data-active='true'] {
-    background: var(--neu-bg);
-    color: #ff6b00;
-    box-shadow: var(--neu-shadow-out-sm);
+  .neu-tab[data-active='true'],
+  .neu-tab-active {
+    background: linear-gradient(145deg, #ff7a1a, #ff6b00);
+    color: #fff;
+    box-shadow: var(--neu-shadow-btn);
     font-weight: 600;
   }
 
@@ -292,15 +305,10 @@ html.dark {
   .neu-theme-knob {
     background: var(--neu-bg);
     box-shadow: var(--neu-shadow-knob);
-    transform: translateX(0);
   }
 
   .neu-theme-knob-ready {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .neu-theme-knob-dark {
-    transform: translateX(2rem);
   }
 
   .section-title {
@@ -331,10 +339,6 @@ html.dark {
   .text-ink-muted {
     color: var(--ink-muted);
   }
-}
-
-html.dark .bg-court-soft {
-  background-color: rgba(255, 107, 0, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {

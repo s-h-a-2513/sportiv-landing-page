@@ -1,64 +1,69 @@
 import { useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
+import { Monitor, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
+
+const modes = [
+  { value: 'light', icon: Sun, label: 'Light' },
+  { value: 'dark', icon: Moon, label: 'Dark' },
+  { value: 'system', icon: Monitor, label: 'System' },
+] as const
 
 type NeumorphicThemeToggleProps = {
   className?: string
 }
 
+/** Matches Sportiv Owner App theme control: light / dark / system. */
 export function NeumorphicThemeToggle({ className }: NeumorphicThemeToggleProps) {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const isDark = mounted && resolvedTheme === 'dark'
-
-  const toggle = () => {
-    setTheme(isDark ? 'light' : 'dark')
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          'neu-theme-toggle inline-flex h-9 w-[108px] rounded-pill',
+          className,
+        )}
+        aria-hidden
+      />
+    )
   }
 
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={isDark}
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      onClick={toggle}
+    <div
+      role="group"
+      aria-label="Theme"
       className={cn(
-        'neu-theme-toggle relative inline-flex h-10 w-[4.5rem] shrink-0 items-center rounded-pill border-0 p-1',
+        'neu-theme-toggle inline-flex items-center gap-0.5 rounded-pill p-1',
         className,
       )}
     >
-      <span
-        className="pointer-events-none absolute inset-0 flex items-center justify-between px-2.5"
-        aria-hidden
-      >
-        <Sun
-          className={cn(
-            'h-3.5 w-3.5 transition-opacity duration-200',
-            isDark ? 'text-ink-muted opacity-55' : 'opacity-0',
-          )}
-          strokeWidth={2.25}
-        />
-        <Moon
-          className={cn(
-            'h-3.5 w-3.5 transition-opacity duration-200',
-            isDark ? 'opacity-0' : 'text-ink-muted opacity-55',
-          )}
-          strokeWidth={2.25}
-        />
-      </span>
-      <span
-        className={cn(
-          'neu-theme-knob relative z-[1] block h-8 w-8 rounded-full',
-          mounted && 'neu-theme-knob-ready',
-          isDark && 'neu-theme-knob-dark',
-        )}
-      />
-    </button>
+      {modes.map(({ value, icon: Icon, label }) => {
+        const active = theme === value
+        return (
+          <button
+            key={value}
+            type="button"
+            title={label}
+            aria-label={label}
+            aria-pressed={active}
+            onClick={() => setTheme(value)}
+            className={cn(
+              'flex h-7 w-7 items-center justify-center rounded-full border-0 transition-colors',
+              active
+                ? 'neu-theme-knob neu-theme-knob-ready text-court'
+                : 'bg-transparent text-ink-muted hover:text-ink',
+            )}
+          >
+            <Icon className="h-3.5 w-3.5" strokeWidth={2.25} />
+          </button>
+        )
+      })}
+    </div>
   )
 }

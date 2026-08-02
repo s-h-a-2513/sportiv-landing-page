@@ -30,7 +30,7 @@ export function PrivacyPage() {
 
       <section className="py-12 md:py-16">
         <Container>
-          <div className="neu-raised max-w-[62ch] space-y-4 rounded-[24px] p-8 text-ink-muted md:p-10">
+          <div className="neu-raised max-w-[62ch] space-y-4 rounded-[28px] p-6 text-ink-muted md:p-8">
             <p>
               Until the full Privacy Policy is available, contact us with any
               privacy questions at{' '}

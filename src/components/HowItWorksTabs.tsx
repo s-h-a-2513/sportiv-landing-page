@@ -70,11 +70,10 @@ export function HowItWorksTabs() {
               key={tab.id}
               type="button"
               className={cn(
-                'min-w-[9.5rem] flex-1 rounded-pill px-5 py-2.5 text-sm font-semibold sm:flex-none',
-                active
-                  ? 'neu-btn text-white'
-                  : 'bg-transparent text-ink-muted transition-colors hover:text-ink',
+                'neu-tab min-w-[9.5rem] flex-1 rounded-pill px-5 py-2.5 text-sm font-semibold sm:flex-none',
+                active && 'neu-tab-active',
               )}
+              data-active={active ? 'true' : 'false'}
               aria-pressed={active}
               onClick={() => select(index)}
             >

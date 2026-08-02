@@ -1,23 +1,18 @@
-import { lazy, Suspense, useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { AnimatedBackground } from '@/components/core/animated-background'
 import { BrandMark } from '@/components/BrandMark'
 import { NeumorphicThemeToggle } from '@/components/NeumorphicThemeToggle'
+import { OwnerDashboardLink } from '@/components/OwnerDashboardLink'
 import { NAV_ITEMS } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
-
-const WaitlistDialog = lazy(() =>
-  import('@/components/WaitlistDialog').then((m) => ({
-    default: m.WaitlistDialog,
-  })),
-)
 
 function sectionHref(id: string, pathname: string) {
   return pathname === '/' ? `#${id}` : `/#${id}`
 }
 
-const waitlistBtnClass =
+const ownerCtaClass =
   'neu-btn inline-flex items-center justify-center rounded-pill px-5 py-2.5 text-sm font-semibold text-white hover:text-white hover:no-underline'
 
 export function SiteHeader() {
@@ -68,20 +63,7 @@ export function SiteHeader() {
           <div className="flex items-center justify-end gap-2">
             <NeumorphicThemeToggle />
             <div className="hidden lg:block">
-              <Suspense
-                fallback={
-                  <span
-                    className={waitlistBtnClass}
-                    aria-hidden
-                    style={{ minWidth: 120, minHeight: 40 }}
-                  />
-                }
-              >
-                <WaitlistDialog
-                  triggerLabel="Join waitlist"
-                  triggerClassName={waitlistBtnClass}
-                />
-              </Suspense>
+              <OwnerDashboardLink className={ownerCtaClass} />
             </div>
 
             <button
@@ -116,21 +98,10 @@ export function SiteHeader() {
                 </a>
               ))}
               <div className="mt-1">
-                <Suspense
-                  fallback={
-                    <span
-                      className={cn(waitlistBtnClass, 'w-full')}
-                      aria-hidden
-                      style={{ minHeight: 40 }}
-                    />
-                  }
-                >
-                  <WaitlistDialog
-                    triggerLabel="Join waitlist"
-                    triggerClassName={cn(waitlistBtnClass, 'w-full')}
-                    onOpen={() => setOpen(false)}
-                  />
-                </Suspense>
+                <OwnerDashboardLink
+                  className={cn(ownerCtaClass, 'w-full')}
+                  onClick={() => setOpen(false)}
+                />
               </div>
             </nav>
           )}

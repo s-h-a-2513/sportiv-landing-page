@@ -2,13 +2,8 @@ import { lazy, Suspense } from 'react'
 import { Container } from '@/components/ui'
 import { BrandMark } from '@/components/BrandMark'
 import { ContactForm } from '@/components/ContactForm'
+import { OwnerDashboardLink } from '@/components/OwnerDashboardLink'
 import { usePageMotion } from '@/hooks/useAnimeScope'
-
-const WaitlistDialog = lazy(() =>
-  import('@/components/WaitlistDialog').then((m) => ({
-    default: m.WaitlistDialog,
-  })),
-)
 
 const HowItWorksTabs = lazy(() =>
   import('@/components/HowItWorksTabs').then((m) => ({
@@ -25,16 +20,6 @@ function LineList({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
-  )
-}
-
-function WaitlistFallback({ className }: { className?: string }) {
-  return (
-    <span
-      className={className}
-      aria-hidden
-      style={{ display: 'inline-block', minWidth: 160, minHeight: 48 }}
-    />
   )
 }
 
@@ -62,15 +47,7 @@ export function HomePage() {
                 Islamabad, Rawalpindi · Coming Soon on Android
               </p>
               <div className="hero-anim flex flex-wrap gap-3 opacity-0">
-                <Suspense
-                  fallback={
-                    <WaitlistFallback className="neu-btn rounded-pill px-7 py-3.5" />
-                  }
-                >
-                  <WaitlistDialog
-                    triggerClassName="neu-btn inline-flex items-center justify-center rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white no-underline hover:text-white hover:no-underline"
-                  />
-                </Suspense>
+                <OwnerDashboardLink className="neu-btn inline-flex items-center justify-center rounded-pill px-7 py-3.5 text-[0.95rem] font-semibold text-white no-underline hover:text-white hover:no-underline" />
               </div>
             </div>
 
