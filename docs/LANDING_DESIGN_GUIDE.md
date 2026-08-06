@@ -16,7 +16,7 @@ Complete visual and interaction reference for the Sportiv marketing site (`landi
 |-----------|----------|
 | Product | Pakistan-focused sports matching for **2-player** games — not dating |
 | Personality | Energetic, local, clear, respectful |
-| Primary CTA | **Field Owner Dashboard** → [owner app](https://sportiv-web-owner-app.vercel.app/) |
+| Primary CTA | **Field Owner Dashboard** → [owner app](https://app.sportiv.pk/) |
 | Proof line | Sports · cities · Coming Soon on Android (honest, no fake metrics) |
 | Support | `support@sportiv.app` |
 
@@ -188,7 +188,7 @@ Light mode shadows are intentionally **stronger** than early drafts so soft UI r
 ### 6.3 Primary CTA — Field Owner Dashboard
 
 - Component: `OwnerDashboardLink` (`lib/owner.ts` URL).
-- Label: **Field Owner Dashboard**; opens [sportiv-web-owner-app.vercel.app](https://sportiv-web-owner-app.vercel.app/) in a new tab.
+- Label: **Field Owner Dashboard**; opens [app.sportiv.pk](https://app.sportiv.pk/) in a new tab.
 - Class: `neu-btn` + pill radius + white semibold text.
 
 ### 6.4 How It Works tabs — `HowItWorksTabs`

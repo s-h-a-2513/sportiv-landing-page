@@ -20,6 +20,44 @@ npm run build
 npm run preview
 ```
 
+## E2E (Playwright)
+
+From `landing/`:
+
+```powershell
+npm install
+npx playwright install chromium   # first time / CI agents
+npm run test:e2e
+```
+
+Optional UI mode: `npm run test:e2e:ui`.
+
+By default Playwright builds the site and serves `vite preview` on `127.0.0.1:4173`. To hit an already-running server (or production):
+
+```powershell
+$env:PLAYWRIGHT_BASE_URL = "http://127.0.0.1:5173"
+npm run test:e2e
+```
+
+## Owner app E2E ([app.sportiv.pk](https://app.sportiv.pk/))
+
+```powershell
+cd c:\Spinder\landing
+npm run test:e2e:owner
+```
+
+Optional live signup (creates a real owner account):
+
+```powershell
+$env:OWNER_TEST_EMAIL = "you+owner@example.com"
+$env:OWNER_TEST_PASSWORD = "your-secure-password"
+npm run test:e2e:owner -- tests/auth/signup.spec.ts
+```
+
+### Playwright MCP (Cursor)
+
+`.cursor/mcp.json` includes the official `@playwright/mcp` server. After saving, open **Cursor Settings → MCP**, enable **playwright**, and reload if needed. Then the agent can drive the browser via MCP tools.
+
 ## Deploy to Vercel
 
 Repo root [`vercel.json`](../vercel.json) builds `landing/` and serves `landing/dist` as a SPA.
